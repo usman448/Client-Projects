@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="📦 StockScout"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/syncIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"/>
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- Search Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Search Input Row: EditText + Scan Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="Item code, alias, or scan..."
+                android:textColorHint="#BBDEFB"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:background="@drawable/search_input_bg"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:drawableLeft="@android:drawable/ic_menu_search"
+                android:drawableTint="@color/white"
+                android:drawablePadding="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- ✅ FIX: scanButton — same as before -->
+            <Button
+                android:id="@+id/scanButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="📷"
+                android:textSize="22sp"
+                android:padding="0dp"
+                android:background="@drawable/icon_button_bg"
+                android:contentDescription="Scan Barcode"/>
+
+        </LinearLayout>
+
+        <!-- ✅ FIX: searchButton — Java mein reference tha, XML mein add kiya -->
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:text="Search"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="@color/white"
+            android:contentDescription="Search Items"/>
+
+    </LinearLayout>
+
+    <!-- ✅ Already in XML — apiStatusBar (fetch status messages) -->
+    <TextView
+        android:id="@+id/apiStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="🔄 Loading items from server..."
+        android:textColor="@color/statusYellow"
+        android:textSize="13sp"
+        android:background="@color/statusYellowBg"
+        android:visibility="gone"/>
+
+    <!-- Items Count Header + Refresh + ✅ FIX: syncBadge -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/itemsCountLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All Items"
+            android:textColor="@color/textSecondary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"/>
+
+        <!-- ✅ FIX: syncBadge — Java mein use ho raha tha, XML mein add kiya -->
+        <TextView
+            android:id="@+id/syncBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="12sp"
+            android:textColor="@color/statusYellow"
+            android:background="@color/statusYellowBg"
+            android:visibility="gone"/>
+
+        <!-- ✅ refreshButton — already in XML, now listener bhi hai Java mein -->
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="↻ Refresh"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"/>
+
+    </LinearLayout>
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:progressTint="@color/colorPrimary"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"/>
+
+    <!-- Empty State -->
+    <LinearLayout
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📭"
+            android:textSize="64sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No items found"
+            android:textColor="@color/textSecondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pull to refresh or check your connection"
+            android:textColor="@color/textHint"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="16dp"/>
+
+</LinearLayout>

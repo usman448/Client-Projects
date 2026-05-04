@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="colorPrimary">#1565C0</color>
+    <color name="colorPrimaryDark">#0D47A1</color>
+    <color name="colorPrimaryLight">#1976D2</color>
+    <color name="colorAccent">#FF6F00</color>
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+    <color name="textOnPrimary">#FFFFFF</color>
+    <color name="textHint">#9E9E9E</color>
+
+    <!-- Background Colors -->
+    <color name="backgroundColor">#F5F7FA</color>
+    <color name="cardBackground">#FFFFFF</color>
+    <color name="dividerColor">#E0E0E0</color>
+
+    <!-- Status Colors -->
+    <color name="statusGreen">#2E7D32</color>
+    <color name="statusGreenBg">#E8F5E9</color>
+    <color name="statusYellow">#F57F17</color>
+    <color name="statusYellowBg">#FFFDE7</color>
+    <color name="statusRed">#C62828</color>
+    <color name="statusRedBg">#FFEBEE</color>
+
+    <!-- Item List -->
+    <color name="itemCodeColor">#1565C0</color>
+    <color name="quantityHighColor">#2E7D32</color>
+    <color name="quantityLowColor">#E65100</color>
+    <color name="quantityZeroColor">#C62828</color>
+
+    <!-- Sync Status -->
+    <color name="syncPendingBg">#FFF8E1</color>
+    <color name="syncPendingText">#E65100</color>
+    <color name="syncDoneBg">#E8F5E9</color>
+    <color name="syncDoneText">#2E7D32</color>
+
+    <!-- Basic -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>
